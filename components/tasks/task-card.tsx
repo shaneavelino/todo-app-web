@@ -1,5 +1,6 @@
 import { Task } from "@/types/task";
 import { useTasks } from "@/hooks/use-tasks";
+import Image from "next/image";
 
 interface TaskCardProps {
   task: Task;
@@ -14,15 +15,15 @@ export function TaskCard({ task }: TaskCardProps) {
         onClick={() =>
           updateTask(task.id, { completed_status: !task.completed_status })
         }
-        className={`w-5 h-5 rounded flex items-center justify-center border-2 ${
+        className={`w-5 h-5 rounded-xl flex items-center justify-center border-2 transition-colors ${
           task.completed_status
-            ? "bg-blue-500 border-blue-500"
-            : "border-zinc-600"
+            ? "bg-purple-light border-purple-light"
+            : "bg-transparent border-blue"
         }`}
       >
         {task.completed_status && (
           <svg
-            className="w-3 h-3 text-white"
+            className="w-4 h-4 text-white"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -45,30 +46,8 @@ export function TaskCard({ task }: TaskCardProps) {
         {task.title}
       </span>
 
-      {task.color && (
-        <div
-          className="w-3 h-3 rounded-full"
-          style={{ backgroundColor: task.color }}
-        />
-      )}
-
-      <button
-        onClick={() => deleteTask(task.id)}
-        className="opacity-0 group-hover:opacity-100 text-zinc-500 hover:text-red-500 transition-opacity"
-      >
-        <svg
-          className="w-5 h-5"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
+      <button onClick={() => deleteTask(task.id)} className="text-zinc-500">
+        <Image src="/trash.svg" alt="Trash can icon" width={24} height={24} />
       </button>
     </div>
   );

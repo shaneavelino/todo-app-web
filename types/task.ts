@@ -1,14 +1,26 @@
 export enum Color {
-  RED = "#FF3B30",
-  ORANGE = "#FF9500",
-  YELLOW = "#FFCC00",
-  GREEN = "#34C759",
-  BLUE = "#007AFF",
-  INDIGO = "#5856D6",
-  PURPLE = "#AF52DE",
-  PINK = "#FF2D55",
-  BROWN = "#A2845E",
+  RED = "RED",
+  ORANGE = "ORANGE",
+  YELLOW = "YELLOW",
+  GREEN = "GREEN",
+  BLUE = "BLUE",
+  INDIGO = "INDIGO",
+  PURPLE = "PURPLE",
+  PINK = "PINK",
+  BROWN = "BROWN",
 }
+
+export const colorMap = {
+  [Color.RED]: "#FF3B30",
+  [Color.ORANGE]: "#FF9500",
+  [Color.YELLOW]: "#FFCC00",
+  [Color.GREEN]: "#34C759",
+  [Color.BLUE]: "#007AFF",
+  [Color.INDIGO]: "#5856D6",
+  [Color.PURPLE]: "#AF52DE",
+  [Color.PINK]: "#FF2D55",
+  [Color.BROWN]: "#A2845E",
+};
 
 // Base Task interface to match Prisma schema
 export interface Task {

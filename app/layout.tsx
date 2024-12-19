@@ -1,4 +1,3 @@
-// app/layout.tsx
 import "./globals.css";
 import Image from "next/image";
 import { Inter } from "next/font/google";
@@ -30,8 +29,6 @@ export default function RootLayout({
             </div>
           </header>
           <div className="relative -mt-7 max-w-2xl mx-auto px-4">
-            {" "}
-            {/* Adjusted -mt-7 for better centering */}
             {children}
           </div>
         </div>

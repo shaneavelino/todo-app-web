@@ -4,6 +4,7 @@ import { TaskList } from "@/components/tasks/task-list";
 import { TaskForm } from "@/components/tasks/task-form";
 import { useTasks } from "@/hooks/use-tasks";
 import Image from "next/image";
+import { Counter } from "@/components/ui/counter";
 
 export default function Home() {
   const { tasks, isLoading, error, createTask } = useTasks();
@@ -22,6 +23,8 @@ export default function Home() {
         Create Task
         <Image src="/plus.svg" alt="Plus sign icon" width={16} height={16} />
       </button>
+
+      <Counter tasks={tasks} />
 
       {/* Main Content */}
       <div className="mt-4">

@@ -1,4 +1,3 @@
-// hooks/use-tasks.ts
 import useSWR, { mutate } from "swr";
 import { Task, CreateTaskDto, UpdateTaskDto } from "@/types/task";
 
@@ -40,7 +39,7 @@ export function useTasks() {
 
       if (!response.ok) throw new Error("Failed to update task");
 
-      mutate(API_URL); // Revalidate the task list
+      mutate(API_URL);
     } catch (error) {
       console.error("Failed to update task:", error);
       throw error;
@@ -55,7 +54,7 @@ export function useTasks() {
 
       if (!response.ok) throw new Error("Failed to delete task");
 
-      mutate(API_URL); // Revalidate the task list
+      mutate(API_URL);
     } catch (error) {
       console.error("Failed to delete task:", error);
       throw error;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Color, CreateTaskDto } from "@/types/task";
+import { Color, colorMap, CreateTaskDto } from "@/types/task";
 
 interface TaskFormProps {
   onSubmit: (data: CreateTaskDto) => Promise<void>;
@@ -21,7 +21,7 @@ export function TaskForm({ onSubmit, onClose }: TaskFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="">
+    <form onSubmit={handleSubmit}>
       <label className="text-sm text-blue block mb-2">Title</label>
       <input
         type="text"
@@ -33,15 +33,16 @@ export function TaskForm({ onSubmit, onClose }: TaskFormProps) {
       />
 
       <label className="text-sm text-blue block mb-2">Color</label>
-      <div className="flex flex-wrap gap-3 mb-4">
+      <div className="flex flex-wrap gap-4 mb-4">
         {Object.values(Color).map((color) => (
-          <div
+          <button
             key={color}
+            type="button"
             onClick={() => setSelectedColor(color)}
             className={`w-10 h-10 rounded-full transition ${
               selectedColor === color ? "ring-2 ring-white" : ""
             }`}
-            style={{ backgroundColor: color }}
+            style={{ backgroundColor: colorMap[color] }}
           />
         ))}
       </div>

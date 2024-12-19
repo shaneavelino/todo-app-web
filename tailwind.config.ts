@@ -15,6 +15,13 @@ export default {
         blue: {
           DEFAULT: "#4EA8DE",
         },
+        gray: {
+          light: "#333333",
+        },
+        purple: {
+          light: "#5E60CE",
+          DEFAULT: "#8284FA",
+        },
       },
     },
   },
