@@ -1,36 +1,172 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Task Management App
 
-## Getting Started
+A Next.js application for managing tasks with color coding, completion tracking, and a clean, modern interface.
 
-First, run the development server:
+## Features
 
+- Create, edit, and delete tasks
+- Color code tasks
+- Track task completion status
+- Modern, responsive UI
+- Real-time updates with SWR
+- Server-side rendering with Next.js
+
+## Prerequisites
+
+- Node.js (v18 or higher)
+- npm or yarn
+- Backend API running (see backend repo)
+- Local MySQL service running
+
+## Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/shaneavelino/todo-app-web
+cd todo-app-web
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables:
+Create a `.env.local` file in the root directory:
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3000
+```
+Will need to update this URL in `hooks/use-tasks.tsx`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Running the Application
 
-## Learn More
+### Development
+```bash
+npm run dev
+```
+The app will run on http://localhost:3001
 
-To learn more about Next.js, take a look at the following resources:
+### Production Build
+```bash
+npm run build
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
+```
+src/
+├── app/
+│   ├── page.tsx              # Home page
+│   ├── tasks/
+│   │   ├── [id]/
+│   │   │   └── page.tsx     # Edit task page
+│   │   └── new/
+│   │       └── page.tsx     # Create task page
+├── components/
+│   ├── ui/
+│   │   ├── button.tsx       # Reusable button component
+│   │   └── counter.tsx      # Task counter component
+│   └── tasks/
+│       ├── task-card.tsx    # Individual task display
+│       ├── task-form.tsx    # Task creation/edit form
+│       └── task-list.tsx    # List of tasks
+├── hooks/
+│   └── use-tasks.ts         # Task data fetching hook
+└── types/
+    └── task.ts              # TypeScript interfaces
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Available Scripts
 
-## Deploy on Vercel
+- `npm run dev`: Start development server
+- `npm run build`: Create production build
+- `npm start`: Start production server
+- `npm run lint`: Run ESLint
+- `npm run format`: Format code with Prettier
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Components
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### TaskForm
+Creates and edits tasks with properties:
+- Title
+- Color selection
+- Completion status
+
+### TaskCard
+Displays individual tasks with:
+- Title
+- Color indicator
+- Completion checkbox
+- Edit and delete options
+
+### Counter
+Shows task statistics:
+- Total tasks
+- Completed tasks
+
+## Task Colors
+Available colors for tasks:
+- RED
+- ORANGE
+- YELLOW
+- GREEN
+- BLUE
+- INDIGO
+- PURPLE
+- PINK
+- BROWN
+
+## API Integration
+
+The app uses SWR for data fetching with endpoints:
+- GET /tasks - Fetch all tasks
+- GET /tasks/:id - Fetch single task
+- POST /tasks - Create task
+- PUT /tasks/:id - Update task
+- DELETE /tasks/:id - Delete task
+
+## Styling
+
+- Uses Tailwind CSS for styling
+- Consistent color scheme and spacing
+- Responsive design for all screen sizes
+
+## Error Handling
+
+The app handles:
+- API errors
+- Loading states
+- Empty states
+- Form validation
+
+## Browser Support
+
+Supports modern browsers:
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Common Issues
+
+### SWR Cache
+If data isn't updating, try:
+```javascript
+mutate('/tasks') // Revalidate tasks
+```
+
+### Build Errors
+For build errors:
+1. Clear `.next` directory
+```bash
+rm -rf .next
+```
+2. Rebuild
+```bash
+npm run build
+```
+
+- Backend API Repository: https://github.com/shaneavelino/todo-app-server
+```
+
+Would you like me to expand on any section or add additional documentation about specific components, styling, or functionality?
