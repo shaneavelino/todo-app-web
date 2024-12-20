@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Color, colorMap, CreateTaskDto, Task } from "@/types/task";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 
 interface TaskFormProps {
   task?: Task;

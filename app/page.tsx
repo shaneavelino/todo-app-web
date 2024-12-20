@@ -39,7 +39,7 @@ export default function Home() {
               />
             </div>
             <p className="font-bold">
-              You don't have any tasks registered yet.
+              You don`&apos;`t have any tasks registered yet.
             </p>
             <p>Create tasks and organize your to-do items.</p>
           </div>

@@ -1,4 +1,4 @@
-import { colorMap, Task } from "@/types/task";
+import { Task } from "@/types/task";
 import { useTasks } from "@/hooks/use-tasks";
 import Image from "next/image";
 import Link from "next/link";
