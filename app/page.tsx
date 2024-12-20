@@ -1,42 +1,34 @@
 "use client";
-import { useState } from "react";
-import { TaskList } from "@/components/tasks/task-list";
-import { TaskForm } from "@/components/tasks/task-form";
-import { useTasks } from "@/hooks/use-tasks";
 import Image from "next/image";
+import { TaskList } from "@/components/tasks/task-list";
 import { Counter } from "@/components/ui/counter";
+import { Button } from "@/components/ui/button";
+import { useTasks } from "@/hooks/use-tasks";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const { tasks, isLoading, error, createTask } = useTasks();
-  const [isCreating, setIsCreating] = useState(false);
+  const { tasks, isLoading, error } = useTasks();
+  const router = useRouter();
 
   if (error) return <div>Failed to load tasks</div>;
   if (isLoading) return <div>Loading...</div>;
 
   return (
     <>
-      {/* Floating Create Task Button */}
-      <button
-        onClick={() => setIsCreating(true)}
-        className="flex items-center justify-center gap-2 w-full mb-8 px-4 py-3 bg-primary text-white rounded-lg hover:bg-blue-600 transition-colors"
+      <Button
+        onClick={() => router.push("/tasks/new")}
+        fullWidth
+        className="mb-8"
+        icon={{
+          src: "/plus.svg",
+          alt: "Plus sign icon",
+        }}
       >
         Create Task
-        <Image src="/plus.svg" alt="Plus sign icon" width={16} height={16} />
-      </button>
-
+      </Button>
       <Counter tasks={tasks} />
-
-      {/* Main Content */}
       <div className="mt-4">
-        {isCreating ? (
-          <TaskForm
-            onSubmit={async (data) => {
-              await createTask(data);
-              setIsCreating(false);
-            }}
-            onClose={() => setIsCreating(false)}
-          />
-        ) : !tasks || tasks.length === 0 ? (
+        {!tasks || tasks.length === 0 ? (
           <div className="text-center text-zinc-500 mt-12">
             <div className="flex justify-center items-center mb-6">
               <Image
