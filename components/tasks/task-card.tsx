@@ -24,6 +24,7 @@ export function TaskCard({ task }: TaskCardProps) {
               ? "bg-purple-light border-purple-light"
               : "bg-transparent border-blue"
           }`}
+          aria-label="Complete task"
         >
           {task.completed_status && (
             <svg
