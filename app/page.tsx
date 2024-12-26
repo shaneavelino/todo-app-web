@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { TaskList } from "@/components/tasks/task-list";
 import { Counter } from "@/components/ui/counter";
 import { Button } from "@/components/ui/button";
@@ -37,7 +38,18 @@ export default function Home() {
       <div className="mt-4">
         {!displayTasks || displayTasks.length === 0 ? (
           <div className="text-center text-zinc-500 mt-12">
-            {/* Empty state */}
+            <div className="flex justify-center items-center mb-6">
+              <Image
+                src="/clipboard.svg"
+                alt="Clipboard image"
+                width={56}
+                height={56}
+              />
+            </div>
+            <p className="font-bold">
+              You don`&apos;`t have any tasks registered yet.
+            </p>
+            <p>Create tasks and organize your to-do items.</p>
           </div>
         ) : (
           <TaskList tasks={displayTasks} />

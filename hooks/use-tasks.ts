@@ -68,7 +68,7 @@ export function useTasks() {
         method: "DELETE",
       });
       if (!response.ok) throw new Error("Failed to delete task");
-      await mutate();
+      await mutate(undefined, { revalidate: true });
     } catch (error) {
       throw error;
     }
