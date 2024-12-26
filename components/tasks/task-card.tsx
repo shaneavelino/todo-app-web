@@ -10,15 +10,25 @@ interface TaskCardProps {
 export function TaskCard({ task }: TaskCardProps) {
   const { updateTask, deleteTask } = useTasks();
 
+  const handleStatusUpdate = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      await updateTask(task.id, {
+        completed_status: !task.completed_status,
+        color: task.color,
+        title: task.title,
+      });
+    } catch (error) {
+      console.error("Failed to update task status:", error);
+    }
+  };
+
   return (
     <Link href={`/tasks/${task.id}`} className="block">
       <div className="group bg-zinc-800 rounded-lg p-4 flex items-center gap-3">
         <button
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            updateTask(task.id, { completed_status: !task.completed_status });
-          }}
+          onClick={handleStatusUpdate}
           className={`w-6 h-6 rounded-xl flex items-center justify-center border-2 transition-colors ${
             task.completed_status
               ? "bg-purple-light border-purple-light"

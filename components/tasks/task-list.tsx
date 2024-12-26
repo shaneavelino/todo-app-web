@@ -6,7 +6,7 @@ interface TaskListProps {
 }
 
 export function TaskList({ tasks }: TaskListProps) {
-  if (!tasks) return null; // Handle the undefined case
+  if (!tasks) return null;
 
   return (
     <div className="space-y-2">

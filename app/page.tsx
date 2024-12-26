@@ -18,7 +18,6 @@ export default function Home() {
 
   const handleSearchResults = (results: Task[]) => {
     setSearchResults(results);
-    console.log("Search results updated:", results); // Debug log
   };
 
   const displayTasks = searchResults.length > 0 ? searchResults : tasks;
