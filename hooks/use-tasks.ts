@@ -61,6 +61,19 @@ export function useTasks() {
     }
   };
 
+  const searchTasks = async (query: string) => {
+    try {
+      const response = await fetch(
+        `${API_URL}/search?query=${encodeURIComponent(query)}`
+      );
+      if (!response.ok) throw new Error("Failed to search tasks");
+      return await response.json();
+    } catch (error) {
+      console.error("Failed to search tasks:", error);
+      throw error;
+    }
+  };
+
   return {
     tasks,
     error,
@@ -68,5 +81,6 @@ export function useTasks() {
     createTask,
     updateTask,
     deleteTask,
+    searchTasks,
   };
 }
